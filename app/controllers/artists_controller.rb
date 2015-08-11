@@ -24,6 +24,7 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
+    # fail params.inspect
     @artist = Artist.new(artist_params)
 
     respond_to do |format|
@@ -69,6 +70,6 @@ class ArtistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def artist_params
-      params[:artist]
+      params.require(:artist).permit(:name, :nationality, :photo_url)
     end
 end
